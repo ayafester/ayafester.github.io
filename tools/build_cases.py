@@ -29,8 +29,9 @@ LINKEDIN = "https://www.linkedin.com/in/ayafester/"
 TELEGRAM = "https://t.me/ayafester"
 INSTAGRAM = "https://www.instagram.com/ayaoftheshire/"
 EMAIL = "ayafester@gmail.com"
-# английское резюме: положите cv-en.pdf в папку site — кнопка на EN-страницах переключится на него сама
-CV_EN = "cv-en.pdf" if os.path.exists(os.path.join(ROOT, "cv-en.pdf")) else "cv.pdf"
+# резюме: имена файлов с полным именем, чтобы не терялись у рекрутеров; положите Ayaana_Perelygina_CV_EN.pdf в папку site — кнопка на EN-страницах переключится на него сама
+CV_RU = "Ayaana_Perelygina_CV_RU.pdf"
+CV_EN = "Ayaana_Perelygina_CV_EN.pdf" if os.path.exists(os.path.join(ROOT, "Ayaana_Perelygina_CV_EN.pdf")) else CV_RU
 
 CASES = [
     dict(
@@ -289,7 +290,7 @@ UI = {
     "ru": dict(
         prefix="", home="/", nav_label="Разделы", portfolio="портфолио", ai="ai-проекты", exp="опыт",
         name="Перелыгина Айаана", meta="Якутск<br>удалённо или релокация", lang_label="en", lang_title="English version",
-        btn1=('href="/cv.pdf" download="Перелыгина Айаана — CV.pdf"', "скачать cv"),
+        btn1=(f'href="/{CV_RU}" download', "скачать cv"),
         btn2=(f'href="{TELEGRAM}" target="_blank" rel="noopener"', "написать мне в telegram"),
         back="← на главную", task="задача", role="моя роль", done_we="что сделали", done_i="что сделала",
         result="результат", more="ещё кейсы", cover="обложка", screen="экран", email="почта", home_alt="На главную",
@@ -298,7 +299,7 @@ UI = {
     "en": dict(
         prefix="/en", home="/en/", nav_label="Sections", portfolio="portfolio", ai="ai projects", exp="experience",
         name="Ayaana Perelygina", meta="Yakutsk, Russia<br>remote or relocation", lang_label="ru", lang_title="Русская версия",
-        btn1=(f'href="/{CV_EN}" download="Ayaana Perelygina — CV.pdf"', "download cv"),
+        btn1=(f'href="/{CV_EN}" download', "download cv"),
         btn2=(f'href="mailto:{EMAIL}"', "email me"),
         back="← back to home", task="task", role="my role", done_we="what we did", done_i="what I did",
         result="result", more="more case studies", cover="cover", screen="screen", email="email", home_alt="Home",
@@ -329,7 +330,7 @@ def menu(lang, other_url, on_home=False):
     avatar = f'<img class="menu__avatar" src="{pre}assets/img/avatar-menu.png" width="40" height="40" alt="">' if on_home else \
         f'<a href="{u["home"]}"><img class="menu__avatar" src="/assets/img/avatar-menu.png" width="40" height="40" alt="{u["home_alt"]}"></a>'
     ai_pill = f'        <a class="pill" href="{p}#ai">{u["ai"]}</a>\n' if SHOW_AI else ""
-    btn1 = u["btn1"][0].replace('href="/cv.pdf"', 'href="cv.pdf"') if (on_home and lang == "ru") else u["btn1"][0]
+    btn1 = u["btn1"][0].replace(f'href="/{CV_RU}"', f'href="{CV_RU}"') if (on_home and lang == "ru") else u["btn1"][0]
     return f"""  <aside class="menu">
     <div class="menu__top">
       {avatar}
