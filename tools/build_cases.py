@@ -21,6 +21,7 @@ from html import escape
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from typograph import typo_html  # noqa: E402
 
+SHOW_AI = False  # блок AI-проектов: True — показать на главной и в меню
 SITE = "https://ayafester.github.io"  # при подключении домена поменять здесь и в <head> index.html
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -325,6 +326,7 @@ def menu(lang, other_url, on_home=False):
     pre = "" if not on_home else ("" if lang == "ru" else "/")
     avatar = f'<img class="menu__avatar" src="{pre}assets/img/avatar-menu.png" width="40" height="40" alt="">' if on_home else \
         f'<a href="{u["home"]}"><img class="menu__avatar" src="/assets/img/avatar-menu.png" width="40" height="40" alt="{u["home_alt"]}"></a>'
+    ai_pill = f'        <a class="pill" href="{p}#ai">{u["ai"]}</a>\n' if SHOW_AI else ""
     btn1 = u["btn1"][0].replace('href="/cv.pdf"', 'href="cv.pdf"') if (on_home and lang == "ru") else u["btn1"][0]
     return f"""  <aside class="menu">
     <div class="menu__top">
@@ -332,8 +334,7 @@ def menu(lang, other_url, on_home=False):
       <p class="menu__name">{u["name"]}<br><span>Lead Web Designer</span></p>
       <nav class="menu__nav" aria-label="{u["nav_label"]}">
         <a class="pill" href="{p}#portfolio">{u["portfolio"]}</a>
-        <a class="pill" href="{p}#ai">{u["ai"]}</a>
-        <a class="pill" href="{p}#experience">{u["exp"]}</a>
+{ai_pill}        <a class="pill" href="{p}#experience">{u["exp"]}</a>
       </nav>
     </div>
     <div class="menu__bottom">
@@ -582,6 +583,7 @@ def build_index():
     head = head.replace('  <link rel="icon"', ld_script("ru") + '  <link rel="icon"', 1)
     s = head + sep + body.replace(" ", " ")  # снять старый типограф, ниже прогоним заново
     s = update_index_reels(s)
+    s = re.sub(r'<section class="section" id="ai"( hidden)?>', '<section class="section" id="ai"%s>' % ("" if SHOW_AI else " hidden"), s)
     s = replace_menu_footer(s, "ru", "/en/", "")
     open(p, "w", encoding="utf-8").write(typo_html(s))
     print("index.html: шоурилы, меню, футер, типограф")
@@ -674,8 +676,8 @@ INDEX_EN = [
     ('ПСТГУ — бакалавр, прикладная математика и информатика, 2017 — 2021',
      'St. Tikhon’s Orthodox University, Moscow — BSc in Applied Mathematics and Computer Science, 2017 — 2021'),
     # обо мне
-    ('Живу между Якутском и Вьетнамом. Люблю путешествовать, смотреть фильмы и сериалы, много гулять и делать что-нибудь руками. Сейчас учусь на права.',
-     'I live between Yakutsk and Vietnam. I love travelling, watching films and series, long walks and making things by hand. Currently learning to drive.'),
+    ('Живу между Якутском и Вьетнамом. Люблю путешествовать, смотреть фильмы и сериалы, много гулять и делать что-нибудь руками. Сейчас сдаю на права.',
+     'I live between Yakutsk and Vietnam. I love travelling, watching films and series, long walks and making things by hand. Currently taking my driving test.'),
 ]
 
 # в EN-главной пути абсолютные, потому что она лежит в /en/

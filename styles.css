@@ -375,3 +375,5 @@ a.case, .more__card {
 .menu__avatar { flex-shrink: 0; }
 .pill--lang { text-transform: lowercase; }
 @media (max-width: 760px) { .pill--lang { height: 30px; padding: 6px 12px; } }
+
+[hidden] { display: none !important; }
