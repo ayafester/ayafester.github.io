@@ -174,7 +174,21 @@ MENU = """  <aside class="menu">
     </div>
   </aside>"""
 
-FOOTER = """    <section class="col footer">
+# Фото в футере: (файл, подпись). Добавляйте сюда новые страны.
+PHOTOS_LIST = [(f"gallery/photo-{i:02d}.jpg", "Якутия") for i in range(1, 11)]
+
+
+def photos_html(prefix):
+    lazy = ' loading="lazy"'
+    imgs = "".join(f'<img src="{prefix}assets/img/{f}" alt="{cap}" data-caption="{cap}"{lazy if i else ""}>'
+                   for i, (f, cap) in enumerate(PHOTOS_LIST))
+    return (f'    <figure class="photo reel" data-interval="3500">\n      {imgs}\n'
+            f'      <figcaption class="display">{PHOTOS_LIST[0][1]}</figcaption>\n    </figure>')
+
+
+PHOTOS = photos_html("/")
+
+FOOTER = f"""    <section class="col footer">
       <ul class="links">
         <li><a href="https://t.me/ayafester" target="_blank" rel="noopener">Telegram</a></li>
         <li><a href="#" data-todo="linkedin">LinkedIn</a></li>
@@ -184,10 +198,7 @@ FOOTER = """    <section class="col footer">
       </ul>
     </section>
 
-    <figure class="photo">
-      <img src="/assets/img/yakutia.jpg" alt="Якутия, Булуус: наледь и вода среди камней" loading="lazy">
-      <figcaption class="display">Якутия, Булуус</figcaption>
-    </figure>"""
+{PHOTOS}"""
 
 
 def ul(items):
@@ -281,6 +292,7 @@ def page(c, others):
   </main>
 
   <script src="/menu.js"></script>
+  <script src="/reel.js"></script>
 </body>
 </html>
 """
@@ -295,9 +307,11 @@ def main():
             f.write(page(c, others))
         print("cases/%s.html  (%d картинок)" % (c["slug"], len(gallery(c["slug"]))))
     update_index_reels()
+    update_index_photos()
 
 
 REEL_FRAMES = 6  # обложка + 5 картинок из галереи
+NO_REEL = {"bravestone", "neon-insights", "joompro"}  # маленькие карточки — одна картинка
 
 
 def update_index_reels():
@@ -306,15 +320,28 @@ def update_index_reels():
     p = os.path.join(ROOT, "index.html")
     s = open(p, encoding="utf-8").read()
     for c in CASES:
-        pat = re.compile(r'<div class="case__img reel"><img src="assets/img/%s" alt="([^"]*)">.*?</div>' % re.escape(c["cover"]))
+        pat = re.compile(r'<div class="case__img reel"><img src="assets/img/%s" alt="([^"]*)">.*?</div>|<img class="case__img" src="assets/img/%s" alt="([^"]*)" loading="lazy">' % (re.escape(c["cover"]), re.escape(c["cover"])))
         m = pat.search(s)
         if not m:
             print("  нет шоурила на главной для", c["slug"]); continue
-        frames = [f'<img src="assets/img/{c["cover"]}" alt="{m.group(1)}">']
+        if c["slug"] in NO_REEL:
+            s = s[:m.start()] + f'<img class="case__img" src="assets/img/{c["cover"]}" alt="{m.group(1) or m.group(2)}" loading="lazy">' + s[m.end():]
+            continue
+        frames = [f'<img src="assets/img/{c["cover"]}" alt="{m.group(1) or m.group(2)}">']
         frames += [f'<img src="{src[1:]}" alt="" loading="lazy">' for src in gallery(c["slug"])[:REEL_FRAMES - 1]]
         s = s[:m.start()] + '<div class="case__img reel">' + "".join(frames) + "</div>" + s[m.end():]
     open(p, "w", encoding="utf-8").write(s)
     print("index.html: шоурилы обновлены")
+
+
+
+def update_index_photos():
+    import re
+    p = os.path.join(ROOT, "index.html")
+    t = open(p, encoding="utf-8").read()
+    t2 = re.sub(r'    <figure class="photo[^"]*".*?</figure>', lambda m: photos_html(""), t, count=1, flags=re.S)
+    open(p, "w", encoding="utf-8").write(t2)
+    print("index.html: галерея фото обновлена")
 
 
 if __name__ == "__main__":

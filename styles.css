@@ -14,6 +14,7 @@
 }
 
 :root {
+  --accent: #007ACB;
   --bg: #f4f4f4;
   --black: #000;
   --gray: #b7b7b7;
@@ -108,11 +109,11 @@ a { color: inherit; }
   transition: background-color .2s, color .2s, border-color .2s;
 }
 .pill { background: var(--white); }
-.pill:hover { background: var(--black); color: var(--bg); }
+
 .btn--outline { border: 1px solid var(--black); }
-.btn--outline:hover { background: var(--black); color: var(--bg); }
+
 .btn--dark { background: var(--black); color: var(--bg); }
-.btn--dark:hover { background: #333; }
+
 
 /* ---------- hero ---------- */
 .hero { display: flex; flex-direction: column; gap: 40px; }
@@ -194,8 +195,7 @@ a { color: inherit; }
 .jobs { display: flex; flex-direction: column; gap: 40px; width: 100%; }
 .jobs li { display: flex; flex-direction: column; gap: 16px; }
 .job { font-size: 28px; line-height: 1.1; letter-spacing: -0.02em; }
-.job a, .job u { text-decoration: underline; text-decoration-thickness: 9%; text-underline-offset: 0.12em; }
-.job a:hover { color: var(--gray); }
+
 
 .edu { display: flex; flex-direction: column; gap: 16px; width: 100%; margin-top: 39px; }
 .edu__list { display: flex; flex-direction: column; gap: 8px; font-size: 18px; line-height: 1.1; letter-spacing: -0.02em; }
@@ -212,8 +212,7 @@ a { color: inherit; }
 /* ---------- обо мне ---------- */
 .about { align-items: flex-start; gap: 80px; }
 .links { display: flex; flex-wrap: wrap; gap: 24px; font-size: 18px; line-height: 1.1; letter-spacing: -0.02em; }
-.links a { text-decoration: underline; text-decoration-thickness: 10%; text-underline-offset: 0.15em; }
-.links a:hover { color: var(--gray); }
+
 
 /* ---------- фото ---------- */
 .photo { position: relative; width: 100%; height: 800px; overflow: hidden; }
@@ -315,19 +314,6 @@ a.case { color: inherit; text-decoration: none; }
 .reel img.is-on { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .reel img { transition: none; } }
 
-/* ховер на кейсах: свой курсор-кружок со стрелкой и подчёркивание текста */
-a.case, .more__card {
-  cursor: url("assets/cursor.svg") 28 28, url("assets/cursor.png") 28 28, pointer;
-}
-.case__title, .more__name {
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.18em;
-  transition: text-decoration-color .2s;
-}
-a.case:hover .case__title, .more__card:hover .more__name { text-decoration-color: currentColor; }
-
 /* «ещё кейсы» внизу страницы кейса */
 .more { display: flex; flex-direction: column; align-items: center; gap: 24px; width: 100%; }
 .more__grid {
@@ -341,3 +327,43 @@ a.case:hover .case__title, .more__card:hover .more__name { text-decoration-color
 .more__name { font-size: 18px; line-height: 1.1; letter-spacing: -0.02em; }
 @media (max-width: 760px) { .more__grid { grid-template-columns: 1fr 1fr; } .more__card:nth-child(3) { display: none; } }
 .more__label { width: min(var(--wide), 100% - 2 * var(--gutter)); }
+
+/* ===================== акцент и ховеры ===================== */
+/* ссылки с подчёркиванием: на ховере линия рисуется заново и всё становится акцентным */
+.links a, .job a, .job u, .case__title, .more__name {
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 86%;   /* линия под базовой линией шрифта, а не под всей строкой */
+  background-size: 100% 0.09em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition: color .2s;
+}
+.case__title, .more__name { background-size: 0 0.09em; }   /* у кейсов линии нет до ховера */
+.links a:hover, .job a:hover,
+a.case:hover .case__title, .more__card:hover .more__name {
+  color: var(--accent);
+  animation: underline-draw .45s ease forwards;
+}
+@keyframes underline-draw {
+  from { background-size: 0 0.09em; }
+  to   { background-size: 100% 0.09em; }
+}
+.links a.muted:hover { color: var(--accent); }
+
+/* кнопки в меню: заливка акцентом */
+.pill:hover, .btn--outline:hover, .btn--dark:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--white);
+}
+
+/* свой курсор на кейсах */
+a.case, .more__card {
+  cursor: url("assets/cursor.svg") 28 28, url("assets/cursor.png") 28 28, pointer;
+}
+
+/* фото в футере — по центру кадра */
+.photo.reel img { object-position: center; }
+.photo figcaption { z-index: 1; }
