@@ -684,8 +684,8 @@ INDEX_EN = [
 ]
 
 # в EN-главной пути абсолютные, потому что она лежит в /en/
-EN_PATHS = [('src="assets/', 'src="/assets/'), ('href="styles.css"', 'href="/styles.css"'),
-            ('href="assets/', 'href="/assets/'), ('src="menu.js"', 'src="/menu.js"'), ('src="reel.js"', 'src="/reel.js"')]
+EN_PATHS = [('src="assets/', 'src="/assets/'), ('href="styles.css', 'href="/styles.css'),
+            ('href="assets/', 'href="/assets/'), ('src="menu.js', 'src="/menu.js'), ('src="reel.js', 'src="/reel.js')]
 
 EN_HEAD = f"""  <title>Ayaana Perelygina — Lead Web Designer</title>
   <meta name="description" content="Lead Web Designer with 6 years of experience designing websites for B2B and SaaS, the last 2 as a lead at a design studio. Design systems, quality, processes and AI in team workflows. Open to remote work or relocation.">
@@ -809,6 +809,23 @@ def write_llms():
     print("llms.txt")
 
 
+def asset_version(name):
+    import hashlib
+    return hashlib.md5(open(os.path.join(ROOT, name), "rb").read()).hexdigest()[:8]
+
+
+def bust_cache():
+    """Добавляет ?v=<хеш> к styles.css, menu.js, reel.js во всех страницах, чтобы браузеры не держали старые версии."""
+    files = ["index.html", "en/index.html"] + [f"{d}/{c['slug']}.html" for d in ("cases", "en/cases") for c in CASES]
+    for f in files:
+        p = os.path.join(ROOT, f)
+        s = open(p, encoding="utf-8").read()
+        for a in ("styles.css", "menu.js", "reel.js"):
+            s = re.sub(r'((?:href|src)="/?)%s(?:\?v=\w+)?"' % re.escape(a), lambda m: f'{m.group(1)}{a}?v={asset_version(a)}"', s)
+        open(p, "w", encoding="utf-8").write(s)
+    print("версии файлов обновлены")
+
+
 def main():
     n = len(CASES)
     for lang, folder in (("ru", "cases"), ("en", "en/cases")):
@@ -825,6 +842,7 @@ def main():
     build_en_index(plain)
     write_sitemap()
     write_llms()
+    bust_cache()
 
 
 if __name__ == "__main__":
