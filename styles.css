@@ -1,0 +1,264 @@
+/* Портфолио Айааны Перелыгиной — по макету Figma «Screen» (1754:11192) */
+
+@font-face {
+  font-family: "Vela Sans GX";
+  src: url("assets/fonts/VelaSans-GX.ttf") format("truetype");
+  font-weight: 200 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Sexsmith";
+  src: url("assets/fonts/Sexsmith.otf") format("opentype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  --bg: #f4f4f4;
+  --black: #000;
+  --gray: #b7b7b7;
+  --white: #fff;
+
+  --sans: "Vela Sans GX", "Manrope", system-ui, sans-serif;
+  --display: "Sexsmith", "Times New Roman", serif;
+
+  --col: 612px;      /* текстовая колонка */
+  --wide: 1024px;    /* широкие картинки */
+  --gutter: 16px;
+  --blur: 0.75px;    /* мягкое размытие заголовков и рисунков */
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--black);
+  font-family: var(--sans);
+  font-weight: 600;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, p, ul, ol, figure { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+
+.muted { color: var(--gray); }
+
+/* ---------- раскладка ---------- */
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 120px;
+  padding-top: 80px;
+}
+.col { width: min(var(--col), 100% - 2 * var(--gutter)); }
+.section { display: flex; flex-direction: column; align-items: center; gap: 40px; }
+.section__head { display: flex; flex-direction: column; gap: 40px; }
+.block { display: flex; flex-direction: column; gap: 41px; }
+
+/* ---------- типографика ---------- */
+.display {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 0.9;
+  filter: blur(var(--blur));
+}
+.label {
+  font-size: 14px;
+  line-height: 1.1;
+  color: var(--gray);
+  text-transform: uppercase;
+}
+
+/* ---------- меню ---------- */
+.menu {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  bottom: 16px;
+  width: 176px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 12px;
+  line-height: 1;
+  z-index: 10;
+}
+.menu { transition: opacity .3s; }
+.menu--hidden { opacity: 0; pointer-events: none; }
+@media (max-width: 1240px) { .menu--hidden { opacity: 1; pointer-events: auto; } }
+.menu__avatar { width: 40px; height: 40px; border-radius: 50%; }
+.menu__name { margin-top: 21px; }
+.menu__name span { color: var(--gray); }
+.menu__nav { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; margin-top: 21px; }
+.menu__bottom { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+.menu__meta { color: var(--gray); line-height: 1.5; margin-bottom: 30px; }
+
+.pill, .btn {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 8px 16px;
+  border-radius: 40px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color .2s, color .2s, border-color .2s;
+}
+.pill { background: var(--white); }
+.pill:hover { background: var(--black); color: var(--bg); }
+.btn--outline { border: 1px solid var(--black); }
+.btn--outline:hover { background: var(--black); color: var(--bg); }
+.btn--dark { background: var(--black); color: var(--bg); }
+.btn--dark:hover { background: #333; }
+
+/* ---------- hero ---------- */
+.hero { display: flex; flex-direction: column; gap: 40px; }
+.hero__avatar { width: 104px; height: 104px; border-radius: 50%; }
+
+/* ---------- рисунки-дудлы (кроп как в макете) ---------- */
+.doodle {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
+  filter: blur(var(--blur));
+}
+.doodle__in { /* внутренняя рамка 130×119 по центру, как в Figma */
+  position: absolute;
+  top: 0;
+  left: calc(50% + 0.5px);
+  width: 130px;
+  height: 119px;
+  transform: translateX(-50%);
+  overflow: hidden;
+}
+.doodle img, .crop img {
+  position: absolute;
+  max-width: none;
+  height: var(--h);
+  width: var(--w);
+  left: var(--l);
+  top: var(--t);
+}
+
+/* ---------- список «чем занимаюсь» ---------- */
+.lead-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* ---------- кейсы ---------- */
+.cases { display: flex; flex-direction: column; align-items: center; gap: 40px; width: 100%; }
+.case { display: flex; flex-direction: column; align-items: center; gap: 24px; width: 100%; }
+.case__img {
+  width: min(var(--wide), 100% - 2 * var(--gutter));
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 8px;
+  background: var(--gray);
+}
+.case__text { display: flex; flex-direction: column; gap: 12px; }
+.case__title { font-size: 28px; line-height: 1.1; letter-spacing: -0.02em; }
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 1.1;
+  color: var(--gray);
+  text-transform: uppercase;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px 12px;
+}
+.case--small { align-items: flex-start; gap: 0; }
+.case--small .case__img { width: 100%; margin-bottom: 24px; }
+.case--small .tags { margin-bottom: 12px; }
+.case--small .case__title { font-size: 18px; }
+
+.crop { position: relative; overflow: hidden; }
+.placeholder { background: var(--gray); }
+
+/* ---------- опыт ---------- */
+.jobs { display: flex; flex-direction: column; gap: 40px; width: 100%; }
+.jobs li { display: flex; flex-direction: column; gap: 16px; }
+.job { font-size: 28px; line-height: 1.1; letter-spacing: -0.02em; }
+.job a, .job u { text-decoration: underline; text-decoration-thickness: 9%; text-underline-offset: 0.12em; }
+.job a:hover { color: var(--gray); }
+
+.edu { display: flex; flex-direction: column; gap: 16px; width: 100%; margin-top: 39px; }
+.edu__list { display: flex; flex-direction: column; gap: 8px; font-size: 18px; line-height: 1.1; letter-spacing: -0.02em; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips li {
+  padding: 8px 16px;
+  border: 1px solid var(--black);
+  border-radius: 100px;
+  font-size: 14px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* ---------- обо мне ---------- */
+.about { align-items: flex-start; gap: 80px; }
+.links { display: flex; flex-wrap: wrap; gap: 24px; font-size: 18px; line-height: 1.1; letter-spacing: -0.02em; }
+.links a { text-decoration: underline; text-decoration-thickness: 10%; text-underline-offset: 0.15em; }
+.links a:hover { color: var(--gray); }
+
+/* ---------- фото ---------- */
+.photo { position: relative; width: 100%; height: 800px; overflow: hidden; }
+.photo img { width: 100%; height: 100%; object-fit: cover; }
+.photo figcaption { position: absolute; left: 40px; top: 36px; font-size: 40px; }
+
+/* ---------- адаптив ---------- */
+@media (max-width: 1240px) {
+  /* меню не помещается сбоку — превращаем в шапку */
+  .menu {
+    position: sticky;
+    top: 0; left: 0; bottom: auto;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 12px var(--gutter);
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(12px);
+  }
+  .menu__top { display: flex; align-items: center; gap: 12px; }
+  .menu__avatar { width: 32px; height: 32px; }
+  .menu__name { margin: 0; line-height: 1.2; }
+  .menu__nav { flex-direction: row; margin: 0 0 0 12px; }
+  .menu__bottom { flex-direction: row; align-items: center; }
+  .menu__meta { display: none; }
+  .page { padding-top: 48px; }
+}
+
+@media (max-width: 760px) {
+  :root { --blur: 0.5px; }
+  .menu__nav { display: none; }
+  .menu__name span { display: none; }
+  .btn { height: 30px; padding: 6px 12px; }
+  .page { gap: 80px; padding-top: 32px; }
+  .display { font-size: 40px; }
+  .hero__avatar { width: 72px; height: 72px; }
+  .lead-list, .case__title, .job { font-size: 20px; }
+  .lead-list { gap: 20px; }
+  .grid { grid-template-columns: 1fr; gap: 32px; }
+  .case--small .case__title { font-size: 18px; }
+  .photo { height: 480px; }
+  .photo figcaption { left: var(--gutter); top: 20px; font-size: 28px; }
+}
+
+@media (max-width: 420px) {
+  .menu__name { display: none; }
+}
