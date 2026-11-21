@@ -29,6 +29,8 @@ LINKEDIN = "https://www.linkedin.com/in/ayafester/"
 TELEGRAM = "https://t.me/ayafester"
 INSTAGRAM = "https://www.instagram.com/ayaoftheshire/"
 EMAIL = "ayafester@gmail.com"
+# английское резюме: положите cv-en.pdf в папку site — кнопка на EN-страницах переключится на него сама
+CV_EN = "cv-en.pdf" if os.path.exists(os.path.join(ROOT, "cv-en.pdf")) else "cv.pdf"
 
 CASES = [
     dict(
@@ -296,7 +298,7 @@ UI = {
     "en": dict(
         prefix="/en", home="/en/", nav_label="Sections", portfolio="portfolio", ai="ai projects", exp="experience",
         name="Ayaana Perelygina", meta="Yakutsk, Russia<br>remote or relocation", lang_label="ru", lang_title="Русская версия",
-        btn1=(f'href="{LINKEDIN}" target="_blank" rel="noopener"', "linkedin"),
+        btn1=(f'href="/{CV_EN}" download="Ayaana Perelygina — CV.pdf"', "download cv"),
         btn2=(f'href="mailto:{EMAIL}"', "email me"),
         back="← back to home", task="task", role="my role", done_we="what we did", done_i="what I did",
         result="result", more="more case studies", cover="cover", screen="screen", email="email", home_alt="Home",
@@ -798,7 +800,7 @@ def write_llms():
         f"- Email: {EMAIL}",
         f"- LinkedIn: {LINKEDIN}",
         f"- Telegram: {TELEGRAM}",
-        f"- CV (PDF, Russian): {SITE}/cv.pdf",
+        f"- CV (PDF): {SITE}/{CV_EN}",
         "",
     ]
     with open(os.path.join(ROOT, "llms.txt"), "w", encoding="utf-8") as f:

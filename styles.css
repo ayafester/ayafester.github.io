@@ -373,7 +373,8 @@ a.case, .more__card {
 
 /* переключатель языка */
 .menu__avatar { flex-shrink: 0; }
-.pill--lang { text-transform: lowercase; }
-@media (max-width: 760px) { .pill--lang { height: 30px; padding: 6px 12px; } }
+.pill.pill--lang { background: none; color: var(--gray); padding-left: 0; padding-right: 0; height: auto; border: 0; }
+.pill.pill--lang:hover { background: none; color: var(--accent); }
+@media (max-width: 1240px) { .pill.pill--lang { margin-right: 4px; } }
 
 [hidden] { display: none !important; }
