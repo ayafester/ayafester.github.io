@@ -22,6 +22,13 @@ git push origin main && git push pages main:master
 
 Через 1–2 минуты сайт обновится. Когда появится свой домен — добавить файл `CNAME` с доменом и прописать DNS (A-записи GitHub Pages).
 
+## Две версии: RU и EN
+
+- RU — корень сайта (`/`, `/cases/…`), EN — папка `/en/` (`/en/`, `/en/cases/…`). Переключатель `en / ru` в меню ведёт на ту же страницу на другом языке.
+- RU-главную правим руками в `index.html`. EN-главная `en/index.html` собирается скриптом: английские тексты — в словаре `INDEX_EN` в `tools/build_cases.py`. Если поменяли русский текст на главной, поменяйте его и в `INDEX_EN`, иначе скрипт напишет «не нашла фрагмент».
+- Тексты кейсов на обоих языках — в `CASES` (поле `en`).
+- Для AI-поиска: `llms.txt` (краткая справка о вас для ChatGPT, Claude, Perplexity), JSON-LD с профилем на каждой странице, `hreflang` между версиями. Всё генерируется скриптом.
+
 ## Страницы кейсов
 
 Генерируются скриптом из данных в `tools/build_cases.py` (тексты, факты, порядок). Картинки галерей — `assets/img/cases/<кейс>/g01.jpg…`. После правок:
@@ -36,7 +43,7 @@ python3 tools/build_cases.py
 
 - `tools/build_cases.py` в конце прогоняет типограф (`tools/typograph.py`) по главной и кейсам: неразрывные пробелы после предлогов и союзов, перед тире, между числом и словом. Поэтому после ручных правок `index.html` тоже запускайте скрипт.
 - Скрипт же пишет `sitemap.xml` и `robots.txt`. Адрес сайта — константа `SITE` в начале скрипта; при подключении домена поменять там и в `<head>` главной.
-- OG-картинка главной — `assets/img/og.png`, шаблон `tools/og.html`. Пересобрать:
+- OG-картинки главной — `assets/img/og.png` и `og-en.png`, шаблоны `tools/og.html` и `tools/og-en.html`. Пересобрать:
 
 ```bash
 "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars --force-device-scale-factor=1 --window-size=1200,630 --virtual-time-budget=3000 --screenshot="$PWD/assets/img/og.png" "file://$PWD/tools/og.html"
@@ -44,9 +51,9 @@ python3 tools/build_cases.py
 
 ## Что ещё добавить
 
-- ссылка на hh.ru (сейчас `href="#"`, помечена `data-todo`)
+- ссылка на hh.ru (убрана, пока нет адреса — добавить в `links_html` в скрипте)
+- `cv-en.pdf` — английское резюме; на EN-страницах вместо «скачать cv» пока кнопка LinkedIn
 - картинки для двух AI-кейсов и Quotocolo (сейчас серые заглушки `.placeholder`) и страницы AI-кейсов
-- EN-версия
 
 ## Шрифты
 

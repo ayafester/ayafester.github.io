@@ -1,0 +1,47 @@
+# Ayaana Perelygina — Lead Web Designer
+
+> Ayaana Perelygina (Айаана Перелыгина) is a Lead Web Designer with 6 years of experience designing websites for B2B and SaaS companies, the last 2 years as the web lead at an international design studio. Open to Web Design Team Lead / Lead Web Designer roles, remote or with relocation. Based in Yakutsk, Russia (UTC+9). Languages: Russian (native), English (B2).
+
+## What she does
+
+- Builds design processes: how a project goes from brief to release, who owns what, where rules and context live
+- Owns design quality: design reviews, design systems, shared standards across projects
+- Leads web designers and illustrators: assigns tasks, reviews layouts, gives feedback
+- Brings AI into design team workflows: design systems documented for AI, DESIGN.md, design tokens, handoff to Lovable
+- Designs websites and builds them in Tilda and Webflow
+
+## Experience
+
+- 2024–2026 — busy studio (international design studio), Lead Web Designer: web direction, websites and design systems for clients in Europe, the UAE and Russia; led designers on projects; brought AI into the studio's processes; built a proposal generator that managers use without a designer
+- 2023–2024 — 27flows (digital studio), Senior Web Designer
+- 2022–2023 — Beauty Alliance (marketing agency), Web Designer and Tilda Developer
+- 2020–2022 — Freelance web designer
+
+## Case studies
+
+- [SegmentStream](https://ayafester.github.io/en/cases/segmentstream.html): A website for a marketing analytics SaaS platform that grows with the product. Her part: One page of the website, then leading the team.
+- [Fraxis](https://ayafester.github.io/en/cases/fraxis.html): A multi-page catalog website for a cable assembly manufacturer. Her part: Structure, design and build of the catalog website.
+- [BRS](https://ayafester.github.io/en/cases/brs.html): A minimalist Webflow website for a Dubai renovation company. Her part: One page of the website, then leading a web designer.
+- [vet_workshop](https://ayafester.github.io/en/cases/vet-workshop.html): A new identity and website redesign for the largest online school for veterinarians. Her part: New identity, redesign of the home page, catalog and course templates.
+- [Bravestone](https://ayafester.github.io/en/cases/bravestone.html): A website for a real estate agency in Portugal. Her part: Website design.
+- [Neon Insights](https://ayafester.github.io/en/cases/neon-insights.html): An identity from scratch and a marketing website for a data and AI consultancy. Her part: Identity from scratch, website design and Webflow build.
+- [JoomPro](https://ayafester.github.io/en/cases/joompro.html): A new marketing website for a service that sources and delivers goods from China. Her part: Website redesign.
+
+## Skills and tools
+
+Figma, Webflow (CMS), Tilda (Zero Block), Lovable, Claude Code, Codex, HTML + CSS, Photoshop, Illustrator, Notion. Design systems, UI kits, prototyping, responsive design, UX (user flows, CJM, personas), developer handoff.
+
+## Education
+
+- Skillbox — Project Management, 2025
+- Dzzzen Design — Design Thinking, 2024
+- Moscow Digital Academy — Web Design, 2022
+- St. Tikhon's Orthodox University, Moscow — BSc in Applied Mathematics and Computer Science, 2017–2021
+
+## Contacts
+
+- Website: https://ayafester.github.io/en/ (Russian version: https://ayafester.github.io/)
+- Email: ayafester@gmail.com
+- LinkedIn: https://www.linkedin.com/in/ayafester/
+- Telegram: https://t.me/ayafester
+- CV (PDF, Russian): https://ayafester.github.io/cv.pdf

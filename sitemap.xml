@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://ayafester.github.io/</loc></url>
-  <url><loc>https://ayafester.github.io/cases/segmentstream.html</loc></url>
-  <url><loc>https://ayafester.github.io/cases/fraxis.html</loc></url>
-  <url><loc>https://ayafester.github.io/cases/brs.html</loc></url>
-  <url><loc>https://ayafester.github.io/cases/vet-workshop.html</loc></url>
-  <url><loc>https://ayafester.github.io/cases/bravestone.html</loc></url>
-  <url><loc>https://ayafester.github.io/cases/neon-insights.html</loc></url>
-  <url><loc>https://ayafester.github.io/cases/joompro.html</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://ayafester.github.io/</loc><xhtml:link rel="alternate" hreflang="ru" href="https://ayafester.github.io/"/><xhtml:link rel="alternate" hreflang="en" href="https://ayafester.github.io/en/"/></url>
+  <url><loc>https://ayafester.github.io/en/</loc><xhtml:link rel="alternate" hreflang="ru" href="https://ayafester.github.io/"/><xhtml:link rel="alternate" hreflang="en" href="https://ayafester.github.io/en/"/></url>
+  <url><loc>https://ayafester.github.io/cases/segmentstream.html</loc><xhtml:link rel="alternate" hreflang="ru" href="https://ayafester.github.io/cases/segmentstream.html"/><xhtml:link rel="alternate" hreflang="en" href="https://ayafester.github.io/en/cases/segmentstream.html"/></url>
+  <url><loc>https://ayafester.github.io/en/cases/segmentstream.html</loc><xhtml:link rel="alternate" hreflang="ru" href="https://ayafester.github.io/cases/segmentstream.html"/><xhtml:link rel="alternate" hreflang="en" href="https://ayafester.github.io/en/cases/segmentstream.html"/></url>
+  <url><loc>https://ayafester.github.io/cases/fraxis.html</loc><xhtml:link rel="alternate" hreflang="ru" href="https://ayafester.github.io/cases/fraxis.html"/><xhtml:link rel="alternate" hreflang="en" href="https://ayafester.github.io/en/cases/fraxis.html"/></url>
+  <url><loc>https://ayafester.github.io/en/cases/fraxis.html</loc><xhtml:link rel="alternate" hreflang="ru" href="https://ayafester.github.io/cases/fraxis.html"/><xhtml:link rel="alternate" hreflang="en" href="https://ayafester.github.io/en/cases/fraxis.html"/></url>
+  <url><loc>https://ayafester.github.io/cases/brs.html</loc><xhtml:link rel="alternate" hreflang="ru" href="https://ayafester.github.io/cases/brs.html"/><xhtml:link rel="alternate" hreflang="en" href="https://ayafester.github.io/en/cases/brs.html"/></url>
+  <url><loc>https://ayafester.github.io/en/cases/brs.html</loc><xhtml:link rel="alternate" hreflang="ru" href="https://ayafester.github.io/cases/brs.html"/><xhtml:link rel="alternate" hreflang="en" href="https://ayafester.github.io/en/cases/brs.html"/></url>
+  <url><loc>https://ayafester.github.io/cases/vet-workshop.html</loc><xhtml:link rel="alternate" hreflang="ru" href="https://ayafester.github.io/cases/vet-workshop.html"/><xhtml:link rel="alternate" hreflang="en" href="https://ayafester.github.io/en/cases/vet-workshop.html"/></url>
+  <url><loc>https://ayafester.github.io/en/cases/vet-workshop.html</loc><xhtml:link rel="alternate" hreflang="ru" href="https://ayafester.github.io/cases/vet-workshop.html"/><xhtml:link rel="alternate" hreflang="en" href="https://ayafester.github.io/en/cases/vet-workshop.html"/></url>
+  <url><loc>https://ayafester.github.io/cases/bravestone.html</loc><xhtml:link rel="alternate" hreflang="ru" href="https://ayafester.github.io/cases/bravestone.html"/><xhtml:link rel="alternate" hreflang="en" href="https://ayafester.github.io/en/cases/bravestone.html"/></url>
+  <url><loc>https://ayafester.github.io/en/cases/bravestone.html</loc><xhtml:link rel="alternate" hreflang="ru" href="https://ayafester.github.io/cases/bravestone.html"/><xhtml:link rel="alternate" hreflang="en" href="https://ayafester.github.io/en/cases/bravestone.html"/></url>
+  <url><loc>https://ayafester.github.io/cases/neon-insights.html</loc><xhtml:link rel="alternate" hreflang="ru" href="https://ayafester.github.io/cases/neon-insights.html"/><xhtml:link rel="alternate" hreflang="en" href="https://ayafester.github.io/en/cases/neon-insights.html"/></url>
+  <url><loc>https://ayafester.github.io/en/cases/neon-insights.html</loc><xhtml:link rel="alternate" hreflang="ru" href="https://ayafester.github.io/cases/neon-insights.html"/><xhtml:link rel="alternate" hreflang="en" href="https://ayafester.github.io/en/cases/neon-insights.html"/></url>
+  <url><loc>https://ayafester.github.io/cases/joompro.html</loc><xhtml:link rel="alternate" hreflang="ru" href="https://ayafester.github.io/cases/joompro.html"/><xhtml:link rel="alternate" hreflang="en" href="https://ayafester.github.io/en/cases/joompro.html"/></url>
+  <url><loc>https://ayafester.github.io/en/cases/joompro.html</loc><xhtml:link rel="alternate" hreflang="ru" href="https://ayafester.github.io/cases/joompro.html"/><xhtml:link rel="alternate" hreflang="en" href="https://ayafester.github.io/en/cases/joompro.html"/></url>
 </urlset>
