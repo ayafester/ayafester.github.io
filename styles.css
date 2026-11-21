@@ -301,3 +301,19 @@ a.case:hover .case__title { color: #333; }
   .story__lead { font-size: 20px; }
   .gallery { grid-template-columns: 1fr; }
 }
+
+/* галерея страницы кейса: картинки в натуральных пропорциях, одна под другой */
+.shots { display: flex; flex-direction: column; gap: 12px; width: min(var(--wide), 100% - 2 * var(--gutter)); }
+.shots img { width: 100%; height: auto; border-radius: 8px; background: #e6e6e6; }
+.case-hero .story__lead { margin-top: -16px; }
+
+/* шоурил на карточках главной */
+.reel { position: relative; overflow: hidden; }
+.reel img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top center;
+  opacity: 0; transition: opacity .6s ease;
+}
+.reel img.is-on { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .reel img { transition: none; } }
