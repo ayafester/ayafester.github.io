@@ -63,13 +63,13 @@
       </header>
 
       <div class="cases">
-        <article class="case">
+        <a class="case" href="cases/segmentstream.html">
           <img class="case__img" src="assets/img/case-segmentstream.jpg" alt="Сайт SaaS-платформы маркетинговой аналитики" loading="lazy">
           <div class="case__text col">
             <ul class="tags"><li>многостраничный сайт</li><li>тимлид</li><li>дизайн-система</li></ul>
             <p class="case__title">Сделала страницу для сайта SaaS-платформы аналитики и передала проект веб-дизайнеру. Дальше вела его и иллюстратора: команда собрала 10+ страниц и систему иллюстраций.</p>
           </div>
-        </article>
+        </a>
 
         <article class="case">
           <img class="case__img" src="assets/img/case-fraxis.jpg" alt="Каталог B2B-производителя кабельных сборок" loading="lazy">
@@ -217,16 +217,6 @@
 
   </main>
 
-  <script>
-    // Прячем боковое меню, когда доскроллили до фото — чтобы не лежало поверх картинки
-    (function () {
-      var menu = document.querySelector('.menu');
-      var photo = document.querySelector('.photo');
-      if (!('IntersectionObserver' in window) || !menu || !photo) return;
-      new IntersectionObserver(function (entries) {
-        menu.classList.toggle('menu--hidden', entries[0].isIntersecting);
-      }, { threshold: 0.15 }).observe(photo);
-    })();
-  </script>
+  <script src="menu.js"></script>
 </body>
 </html>
