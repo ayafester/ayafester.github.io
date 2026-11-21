@@ -330,7 +330,7 @@ a.case { color: inherit; text-decoration: none; }
 
 /* ===================== акцент и ховеры ===================== */
 /* ссылки с подчёркиванием: на ховере линия рисуется заново и всё становится акцентным */
-.links a, .job a, .job u, .case__title, .more__name {
+.links a, .job a, .job u {
   text-decoration: none;
   background-image: linear-gradient(currentColor, currentColor);
   background-repeat: no-repeat;
@@ -340,12 +340,13 @@ a.case { color: inherit; text-decoration: none; }
   box-decoration-break: clone;
   transition: color .2s;
 }
-.case__title, .more__name { background-size: 0 0.09em; }   /* у кейсов линии нет до ховера */
-.links a:hover, .job a:hover,
-a.case:hover .case__title, .more__card:hover .more__name {
+.links a:hover, .job a:hover {
   color: var(--accent);
   animation: underline-draw .45s ease forwards;
 }
+/* кейсы: без линии, только акцентный цвет текста */
+.case__title, .more__name { transition: color .2s; }
+a.case:hover .case__title, .more__card:hover .more__name { color: var(--accent); }
 @keyframes underline-draw {
   from { background-size: 0 0.09em; }
   to   { background-size: 100% 0.09em; }
@@ -361,7 +362,9 @@ a.case:hover .case__title, .more__card:hover .more__name {
 
 /* свой курсор на кейсах */
 a.case, .more__card {
-  cursor: url("assets/cursor.svg") 28 28, url("assets/cursor.png") 28 28, pointer;
+  cursor: url("assets/cursor.png") 28 28, pointer;
+  cursor: -webkit-image-set(url("assets/cursor.png") 1x, url("assets/cursor@2x.png") 2x) 28 28, pointer;
+  cursor: image-set(url("assets/cursor.png") 1x, url("assets/cursor@2x.png") 2x) 28 28, pointer;
 }
 
 /* фото в футере — по центру кадра */

@@ -8,7 +8,7 @@
   reels.forEach(function (reel, n) {
     var imgs = reel.querySelectorAll('img');
     var caption = reel.querySelector('figcaption');
-    var every = parseInt(reel.getAttribute('data-interval'), 10) || 1200;
+    var every = parseInt(reel.getAttribute('data-interval'), 10) || 1600;
     imgs[0].classList.add('is-on');
     if (reduce || imgs.length < 2) return;
     var i = 0, timer = null;

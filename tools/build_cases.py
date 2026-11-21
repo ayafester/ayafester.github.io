@@ -182,7 +182,7 @@ def photos_html(prefix):
     lazy = ' loading="lazy"'
     imgs = "".join(f'<img src="{prefix}assets/img/{f}" alt="{cap}" data-caption="{cap}"{lazy if i else ""}>'
                    for i, (f, cap) in enumerate(PHOTOS_LIST))
-    return (f'    <figure class="photo reel" data-interval="3500">\n      {imgs}\n'
+    return (f'    <figure class="photo reel" data-interval="2000">\n      {imgs}\n'
             f'      <figcaption class="display">{PHOTOS_LIST[0][1]}</figcaption>\n    </figure>')
 
 
@@ -191,10 +191,10 @@ PHOTOS = photos_html("/")
 FOOTER = f"""    <section class="col footer">
       <ul class="links">
         <li><a href="https://t.me/ayafester" target="_blank" rel="noopener">Telegram</a></li>
-        <li><a href="#" data-todo="linkedin">LinkedIn</a></li>
+        <li><a href="https://www.linkedin.com/in/ayafester/" target="_blank" rel="noopener">LinkedIn</a></li>
         <li><a href="#" data-todo="hh">hh.ru</a></li>
-        <li><a href="mailto:ayanka_m@mail.ru">почта</a></li>
-        <li><a class="muted" href="https://www.instagram.com/ayafester/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="mailto:ayafester@gmail.com">почта</a></li>
+        <li><a href="https://www.instagram.com/ayafester/" target="_blank" rel="noopener">Instagram</a></li>
       </ul>
     </section>
 
