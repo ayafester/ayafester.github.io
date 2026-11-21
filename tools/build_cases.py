@@ -246,7 +246,7 @@ def page(c, others):
   <main class="page">
 
     <section class="col case-hero">
-      <a class="back" href="/#portfolio">← все кейсы</a>
+      <a class="back" href="/#portfolio">← на главную</a>
       <h1 class="display case-hero__title">{e(c["title"])}</h1>
       <p class="story__lead">{e(c["lead"])}</p>
       <ul class="tags">{"".join(f"<li>{e(t)}</li>" for t in c["tags"])}</ul>
