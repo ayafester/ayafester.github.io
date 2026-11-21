@@ -12,12 +12,15 @@ python3 -m http.server 4173
 
 ## Деплой
 
-Cloudflare Pages, подключённый к этому репозиторию на GitHub:
-- Framework preset: **None**
-- Build command: *(пусто)*
-- Build output directory: `/`
+GitHub Pages: сайт живёт в репозитории `ayafester/ayafester.github.io` (ветка `master`) и открывается на https://ayafester.github.io. Исходники дублируются в приватный `ayafester/personal-website`.
 
-Каждый пуш в `main` публикуется автоматически.
+Опубликовать правки:
+
+```bash
+git push origin main && git push pages main:master
+```
+
+Через 1–2 минуты сайт обновится. Когда появится свой домен — добавить файл `CNAME` с доменом и прописать DNS (A-записи GitHub Pages).
 
 ## Страницы кейсов
 
