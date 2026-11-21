@@ -14,11 +14,11 @@
       i = (i + 1) % imgs.length;
       imgs[i].classList.add('is-on');
     }
-    function start() { if (!timer) timer = setInterval(step, 2200); }
+    function start() { if (!timer) timer = setInterval(step, 1200); }
     function stop() { clearInterval(timer); timer = null; }
     if (!('IntersectionObserver' in window)) { setTimeout(start, n * 300); return; }
     new IntersectionObserver(function (e) {
-      e[0].isIntersecting ? setTimeout(start, (n % 3) * 400) : stop();
+      e[0].isIntersecting ? setTimeout(start, (n % 3) * 250) : stop();
     }, { threshold: 0.3 }).observe(reel);
   });
 })();
