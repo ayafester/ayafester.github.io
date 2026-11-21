@@ -5,7 +5,13 @@
 Тексты правим здесь, потом перезапускаем скрипт — HTML пересоберётся.
 """
 import os
+import sys
 from html import escape
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from typograph import typo, typo_html  # noqa: E402
+
+SITE = "https://ayafester.github.io"  # при подключении домена поменять здесь
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -21,8 +27,8 @@ CASES = [
         task="Продукт вырос, а визуальный стиль за ним не успевал. Нужен был сайт, который легко расширять на новые фичи и решения.",
         role=["Сделала страницу сайта и передала проект веб-дизайнеру",
               "Дальше вела веб-дизайнера и иллюстратора: следила за работой и качеством макетов"],
-        done=["Обновили key visual — глубже, премиальнее, увереннее",
-              "Собрали дизайн-систему страниц: фичи, решения, цены, кейсы — под все размеры экранов и готовую к разработке",
+        done=["Обновили key visual: глубже, премиальнее, увереннее",
+              "Собрали адаптивную дизайн-систему страниц — фичи, решения, цены, кейсы, — готовую к разработке",
               "Иллюстратор сделал систему иллюстраций, которая по шагам объясняет атрибуцию и incrementality-тесты"],
         result="Сайт собран как система: новые страницы делаются из готовых шаблонов — командой или AI-агентом.",
         tags=["многостраничный сайт", "тимлид", "дизайн-система"],
@@ -35,7 +41,7 @@ CASES = [
                ("что делала", "Структура, дизайн и сборка сайта-каталога"),
                ("формат", "B2B, многоуровневый каталог"),
                ("платформа", "Tilda + кастомный код")],
-        task="У компании широкая линейка продуктов и услуг для разных отраслей, собственное производство и контрактная разработка. Нужен был сайт-витрина, который показывает всё — и при этом остаётся понятным.",
+        task="У компании широкая линейка продуктов и услуг для разных отраслей, собственное производство и контрактная разработка. Нужен был сайт-витрина, который показывает всё и при этом остаётся понятным.",
         role=["Разработала многоуровневый сайт-каталог на Tilda",
               "Разложила продукцию и услуги в понятную структуру с удобной навигацией",
               "С помощью кода вышла за рамки типовых блоков платформы и собрала сложный B2B-сайт"],
@@ -66,7 +72,7 @@ CASES = [
         slug="vet-workshop", title="vet_workshop",
         lead="Новая айдентика и редизайн сайта крупнейшей ветеринарной онлайн-школы.",
         cover="case-vet.jpg",
-        facts=[("клиент", "Онлайн-школа для ветеринаров: 7000+ студентов, 17 направлений"),
+        facts=[("клиент", "Онлайн-школа для ветеринаров: 7 000+ студентов, 17 направлений"),
                ("что делала", "Новая айдентика, редизайн главной, каталога и шаблонов курсов"),
                ("потом", "3 года вела веб-дизайнера на поддержке"),
                ("платформа", "Tilda")],
@@ -78,7 +84,7 @@ CASES = [
         done_label="что сделала",
         done=["Новая айдентика",
               "Новая главная страница",
-              "Каталог курсов с фильтром — давняя проблема клиента, которую раньше не мог решить никто",
+              "Каталог курсов с фильтром — давняя задача клиента, которую раньше никто не мог решить",
               "Шаблоны страниц курсов"],
         result="По отзыву соосновательницы школы, задачи сдавались в срок или раньше, а каталог-фильтр собрали за один день.",
         tags=["айдентика", "многостраничный сайт", "тимлид", "tilda"],
@@ -91,7 +97,7 @@ CASES = [
                ("что делала", "Дизайн сайта"),
                ("платформа", "Webflow"),
                ("основа", "Готовая айдентика студии")],
-        task="Передать на сайте премиальный и уверенный образ бренда — для нового поколения инвесторов.",
+        task="Передать на сайте премиальный и уверенный образ бренда для нового поколения инвесторов.",
         role=["Сделала сайт на основе готовой айдентики"],
         done_label="что сделала",
         done=["Сдержанный премиальный сайт в стиле бренда",
@@ -112,7 +118,7 @@ CASES = [
               "Сделала дизайн маркетингового сайта",
               "Сама собрала его в Webflow"],
         done_label="что сделала",
-        done=["Компактная визуальная система: чистый стиль с неоновыми элементами — про современные инструменты и простые решения",
+        done=["Компактная визуальная система: чистый стиль с неоновыми элементами, который говорит о современных инструментах и простых решениях",
               "Маркетинговый сайт на Webflow",
               "Обложки для соцсетей в том же стиле"],
         result=None,
@@ -207,6 +213,7 @@ def ul(items):
 
 def page(c, others):
     e = escape
+    url = f"{SITE}/cases/{c['slug']}.html"
     facts = "\n".join(f'        <div><dt class="label">{e(k)}</dt><dd>{e(v)}</dd></div>' for k, v in c["facts"])
     shots = "\n".join(f'      <img src="{src}" alt="{e(c["title"])} — экран {i}" loading="lazy">'
                       for i, src in enumerate(gallery(c["slug"]), 1))
@@ -230,9 +237,18 @@ def page(c, others):
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{e(c["title"])} — кейс · Перелыгина Айаана</title>
+  <title>{e(c["title"])} — кейс · Айаана Перелыгина, Lead Web Designer</title>
   <meta name="description" content="{e(c["lead"])}">
-  <meta property="og:image" content="/assets/img/{c["cover"]}">
+  <meta name="author" content="Айаана Перелыгина">
+  <link rel="canonical" href="{url}">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="Айаана Перелыгина — Lead Web Designer">
+  <meta property="og:title" content="{e(c["title"])} — кейс Айааны Перелыгиной">
+  <meta property="og:description" content="{e(c["lead"])}">
+  <meta property="og:url" content="{url}">
+  <meta property="og:image" content="{SITE}/assets/img/{c["cover"]}">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="/assets/img/avatar-menu.png">
   <link rel="preload" href="/assets/fonts/VelaSans-GX.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="/assets/fonts/Sexsmith.otf" as="font" type="font/otf" crossorigin>
@@ -304,10 +320,12 @@ def main():
     for i, c in enumerate(CASES):
         others = [CASES[(i + k) % n] for k in (1, 2, 3)]
         with open(os.path.join(ROOT, "cases", c["slug"] + ".html"), "w", encoding="utf-8") as f:
-            f.write(page(c, others))
+            f.write(typo_html(page(c, others)))
         print("cases/%s.html  (%d картинок)" % (c["slug"], len(gallery(c["slug"]))))
     update_index_reels()
     update_index_photos()
+    update_index_typo()
+    write_sitemap()
 
 
 REEL_FRAMES = 6  # обложка + 5 картинок из галереи
@@ -342,6 +360,24 @@ def update_index_photos():
     t2 = re.sub(r'    <figure class="photo[^"]*".*?</figure>', lambda m: photos_html(""), t, count=1, flags=re.S)
     open(p, "w", encoding="utf-8").write(t2)
     print("index.html: галерея фото обновлена")
+
+
+def update_index_typo():
+    p = os.path.join(ROOT, "index.html")
+    s = open(p, encoding="utf-8").read()
+    open(p, "w", encoding="utf-8").write(typo_html(s))
+    print("index.html: типограф")
+
+
+def write_sitemap():
+    urls = [SITE + "/"] + [f"{SITE}/cases/{c['slug']}.html" for c in CASES]
+    body = "\n".join(f"  <url><loc>{u}</loc></url>" for u in urls)
+    with open(os.path.join(ROOT, "sitemap.xml"), "w", encoding="utf-8") as f:
+        f.write('<?xml version="1.0" encoding="UTF-8"?>\n'
+                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + body + "\n</urlset>\n")
+    with open(os.path.join(ROOT, "robots.txt"), "w", encoding="utf-8") as f:
+        f.write(f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
+    print("sitemap.xml, robots.txt")
 
 
 if __name__ == "__main__":
