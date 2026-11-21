@@ -200,7 +200,7 @@ FOOTER = f"""    <section class="col footer">
         <li><a href="https://www.linkedin.com/in/ayafester/" target="_blank" rel="noopener">LinkedIn</a></li>
         <li><a href="#" data-todo="hh">hh.ru</a></li>
         <li><a href="mailto:ayafester@gmail.com">почта</a></li>
-        <li><a href="https://www.instagram.com/ayafester/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.instagram.com/ayaoftheshire/" target="_blank" rel="noopener">Instagram</a></li>
       </ul>
     </section>
 
